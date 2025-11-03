@@ -6,12 +6,12 @@ import mobileAppImage from '~/assets/images/mobile-app.jpg';
 import webAppImage from '~/assets/images/web-app.jpg';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 
 const metadata = {
   title: 'Sproutful — Connected care, simplified',
@@ -158,6 +158,38 @@ const metadata = {
       Keep your team organized, informed, and in control — streamlining client care and collaboration.
     </Fragment>
   </Content>
+  <Testimonials
+    title="What our users say?"
+    testimonials={[
+      {
+        testimonial: `Sproutful has made managing my child's daily routines so much easier. I can see what tasks have been completed, and I always feel connected to the support team even when I'm at work.`,
+        name: 'Emily Carter',
+        job: 'Parent',
+        image: {
+          src: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+          alt: 'Emily Carter Image',
+        },
+      },
+      {
+        testimonial: `As a support worker, Sproutful keeps me accountable and organized. I no longer worry about losing track of daily tasks, and the app makes communicating with families and therapists so simple.`,
+        name: 'James Mitchell',
+        job: 'Support Worker',
+        image: {
+          src: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+          alt: 'James Mitchell Image',
+        },
+      },
+      {
+        testimonial: `Sproutful has transformed the way I monitor client progress. The web dashboard gives me real-time updates and clear insights, making collaboration with support workers and families much more effective.`,
+        name: 'Dr. Sophia Reynolds',
+        job: 'Psychologist',
+        image: {
+          src: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+          alt: 'Dr. Sophia Reynolds Image',
+        },
+      },
+    ]}
+  />
 
   <!-- Steps Widget ****************** -->
 

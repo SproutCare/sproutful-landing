@@ -10,6 +10,10 @@ export const headerData = {
       text: 'For Professionals',
       href: getPermalink('/saas'),
     },
+    {
+      text: 'Contact Us',
+      href: getPermalink('/contact'),
+    },
   ],
   actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
 };
