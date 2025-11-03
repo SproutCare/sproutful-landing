@@ -21,6 +21,7 @@ const metadata = {
   <Fragment slot="header">
     <Header
       {...headerData}
+      position="left"
       actions={[
         {
           variant: 'secondary',
@@ -34,6 +35,7 @@ const metadata = {
         },
       ]}
       isSticky
+      showToggleTheme
     />
   </Fragment>
 
@@ -135,7 +137,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -165,7 +167,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -196,7 +198,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -225,7 +227,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -302,7 +304,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
     </Fragment>
   </FAQs>
 
@@ -342,7 +344,7 @@ const metadata = {
     information={`Explore our collection of articles, guides, and tutorials on web development, design trends, and using AstroWind effectively for your projects.`}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
     </Fragment>
   </BlogLatestPosts>
 </Layout>
