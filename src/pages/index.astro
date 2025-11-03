@@ -2,20 +2,19 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
 import landingHero from '~/assets/images/landing-hero.jpg';
+import mobileAppImage from '~/assets/images/mobile-app.jpg';
+import webAppImage from '~/assets/images/web-app.jpg';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Sproutful — Connected care, simplified',
   ignoreTitleTemplate: true,
 };
 ---
@@ -117,7 +116,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: mobileAppImage,
       alt: 'Mobile app mockup showing Sproutful checklist screen',
     }}
   >
@@ -131,7 +130,7 @@ const metadata = {
   </Content>
 
   <Content
-    tagline="Web Dashboard"
+    tagline="Web Application"
     title="Centralized care management"
     subtitle="Sproutful's web dashboard helps professionals monitor clients, coordinate support teams, and streamline care — all from one secure platform."
     callToAction={{ text: 'Learn More', href: '/saas' }}
@@ -153,7 +152,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1581092580498-1b4b5074e7b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      src: webAppImage,
       alt: 'Web dashboard mockup showing client progress and care tracking',
     }}
   >
@@ -164,7 +163,7 @@ const metadata = {
 
   <!-- Steps Widget ****************** -->
 
-  <Steps
+  <!-- <Steps
     title="Get your dream website up and running in no time with AstroWind."
     items={[
       {
@@ -198,7 +197,7 @@ const metadata = {
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
     tagline="Components"
@@ -262,54 +261,58 @@ const metadata = {
 
   <!-- HighlightedPosts Widget ******* -->
 
-  <BlogLatestPosts
+  <!-- <BlogLatestPosts
     title="Find out more content in our Blog"
     information={`The blog is used to display AstroWind documentation.
                         Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
                         Astro is a very interesting technology. Thanks.
-                `}
-  />
+                `} -->
+  <!-- />  -->
 
   <!-- FAQs Widget ******************* -->
 
   <FAQs
     title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    subtitle="Learn how Sproutful helps families, support workers, and professionals stay connected, organized, and accountable."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: 'What is Sproutful?',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          'Sproutful is a care coordination platform that connects families, clients, support workers, and professionals. It streamlines daily routines, tracks progress, and ensures everyone stays informed and accountable.',
       },
       {
-        title: 'What do I need to start?',
+        title: 'Who is Sproutful for?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          'Sproutful is designed for families, coordinators, and support workers using the mobile app, as well as therapists, and organizations using the web dashboard.',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: 'Do I need any special devices or software?',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          'No special devices are needed. The mobile app works on iOS and Android devices, and the web dashboard works on any modern web browser.',
       },
       {
-        title: "What's something that you don't understand?",
+        title: 'How does Sproutful help families stay connected?',
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          'Families can view real-time updates on care routines, track progress, check off tasks, and receive notifications, giving them peace of mind even when they are away.',
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: 'How does Sproutful support professionals?',
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          'Therapists, coordinators, and organizations can monitor client progress, assign tasks, track outcomes, and collaborate with support workers — all through a secure, centralized web dashboard.',
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: 'Is my data secure with Sproutful?',
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          'Yes. Sproutful uses encryption, access controls, and industry best practices to keep all data secure and private. Only authorized users can access sensitive information.',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-secondary dark:bg-transparent"></div>
+    </Fragment>
+  </FAQs>
 
   <!-- Stats Widget ****************** -->
 

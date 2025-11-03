@@ -3,15 +3,11 @@ import { getPermalink,  getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Home',
-      href: getPermalink('/'),
-    },
-    {
-      text: 'Mobile',
+      text: 'For Families',
       href: getPermalink('/mobile-app'),
     },
     {
-      text: 'SaaS',
+      text: 'For Professionals',
       href: getPermalink('/saas'),
     },
   ],
