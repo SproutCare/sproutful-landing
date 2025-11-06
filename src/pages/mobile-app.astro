@@ -6,7 +6,7 @@ import { headerData } from '~/navigation';
 
 import Hero2 from '~/components/widgets/Hero2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Features3 from '~/components/widgets/Features3.astro';
+import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -23,7 +23,7 @@ const googlePlayDownloadLink = 'https://github.com/arthelokyo/astrowind';
 
 import appImage from '~/assets/images/mobile-app2.jpg';
 import appImage2 from '~/assets/images/mobile-app3.jpg';
-
+import appImage3 from '~/assets/images/mobile-app5.png';
 const metadata = {
   title: 'Mobile App Homepage',
 };
@@ -56,7 +56,7 @@ const metadata = {
 
   <Hero2
     image={{
-      src: 'https://images.unsplash.com/photo-1535303311164-664fc9ec6532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      src: appImage3,
       alt: 'Sproutful Hero Image',
     }}
   >
@@ -122,7 +122,7 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-secondary"></div>
+      <div class="absolute inset-0 bg-white dark:bg-page"></div>
     </Fragment>
   </Content>
 
@@ -157,58 +157,67 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Additional Features</h3>
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-secondary"></div>
+      <div class="absolute inset-0 bg-white dark:bg-page"></div>
     </Fragment>
   </Content>
 
-  <Features3
-    id="features"
-    title="Getting Started with Sproutful"
-    subtitle="Sproutful makes connecting families, carers, and health professionals simple — track routines, log tasks, and stay informed, all from one app."
-    tagline="Step-by-step guide"
-    columns={2}
+  <Steps
+    title="A guided journey to better care"
+    tagline="Simplified process for families"
+    isReversed={true}
     items={[
       {
-        title: 'Download the app',
-        description: `Get Sproutful from the App Store or Google Play and install it on your device to begin managing your Sprouts.`,
-        icon: 'tabler:square-number-1',
+        title: 'Explore Sproutful plans',
+        description: 'Discover our flexible plans and see which one fits your family’s needs best.',
+        icon: 'tabler:number-1',
       },
       {
-        title: 'Create your account',
+        title: 'Choose the plan that works for you',
         description:
-          'Sign up as a family member or support worker to manage your care network and access Sproutful features.',
-        icon: 'tabler:square-number-2',
+          'Compare features, pricing, and options to pick the plan that provides the right level of support.',
+        icon: 'tabler:number-2',
+      },
+      {
+        title: 'Download the app',
+        description: 'Get Sproutful from the App Store or Google Play.',
+        icon: 'tabler:number-3',
+      },
+      {
+        title: 'Sign up or log in securely',
+        description:
+          'Create a new account or safely log in to your existing Sproutful account to start managing your family’s routines.',
+        icon: 'tabler:number-4',
       },
       {
         title: 'Add your Sprouts',
         description:
-          'Create profiles for your loved ones so their routines, tasks, and progress can be tracked in one place.',
-        icon: 'tabler:square-number-3',
+          'Set up profiles for your loved ones or clients so you can track behaviors, routines, and medications easily.',
+        icon: 'tabler:number-5',
       },
       {
-        title: 'Invite carers and organizations',
+        title: 'Confirm your subscription or give an organization access',
         description:
-          'Bring support workers, coordinators, and health professionals into the network so everyone stays informed and aligned.',
-        icon: 'tabler:square-number-4',
+          'You can subscribe individually, or invite your healthcare professional; they can cover your subscription and access relevant data.',
+        icon: 'tabler:number-6',
       },
       {
-        title: 'Collaborate and monitor progress',
-        description:
-          'Use checklists, logs, and updates to track care routines and milestones in real time, keeping the whole network connected.',
-        icon: 'tabler:square-number-5',
-      },
-      {
-        title: 'Level Up Together',
-        description:
-          'Every completed task or milestone is a step forward — grow, learn, and level up as a team with your Sprouts!',
-        icon: 'tabler:rocket',
+        title: 'Start tracking, collaborating, and celebrating progress',
+        description: "Begin tracking routines, collaborate with carers, and monitor your Sprout's progress over time.",
+        icon: 'tabler:number-7',
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1521517407911-565264e7d82d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
-      alt: 'Mobile app showing Sprout profiles and care network',
-    }}
   />
+
+  <CallToAction
+    id="pricing"
+    title="Flexible Pricing Plans"
+    subtitle="Choose the plan that fits your care network — see full details on our Pricing page."
+  >
+    <div slot="actions" class="flex justify-center">
+      <Button variant="primary" href="/pricing"> View Pricing </Button>
+    </div>
+  </CallToAction>
+
   <!-- Stats Widget ****************** -->
 
   <Stats
@@ -261,35 +270,33 @@ const metadata = {
     }}
   />
 
-  <!-- FAQs Widget ******************* -->
-
   <FAQs
     title="Frequently Asked Questions"
     items={[
       {
         title: 'Who can use Sproutful?',
         description:
-          'Sproutful is designed for families, carers, and health professionals to collaboratively support Sprouts — your loved ones — in their daily routines.',
+          'Sproutful is designed for families and carers to collaboratively support Sprouts — your loved ones — in their daily routines and care activities.',
       },
       {
         title: 'How do I track my Sprout’s routines?',
         description:
-          'Use the app’s checklists, logs, and notifications to track tasks, behaviors, medications, and milestones. Updates are visible to everyone in your care network.',
+          'Use Sproutful’s checklists, logs, and notifications to track tasks, behaviors, medications, and milestones. Updates are instantly shared across your care network.',
       },
       {
         title: 'Can multiple carers collaborate?',
         description:
-          'Yes! Invite family members, support workers, coordinators, and health professionals to join your Sprout’s care network. Everyone stays informed and aligned.',
+          'Yes! You can invite family members, support workers, and coordinators to join your Sprout’s care network so everyone stays connected and up to date.',
       },
       {
         title: 'Is my data secure?',
         description:
-          'Absolutely. Sproutful encrypts all data and provides secure access controls to ensure privacy for families and Sprouts.',
+          'Absolutely. Sproutful encrypts all data and restricts access to authorized users only, keeping your family’s information private and safe.',
       },
       {
         title: 'Is there a cost?',
         description:
-          'Sproutful offers a free tier for families and carers. Certain premium features or organization access may require a subscription.',
+          'Sproutful offers a 7-day free trial for all new users. After that, you can continue your subscription to keep enjoying full access to every feature.',
       },
     ]}
   />

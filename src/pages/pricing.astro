@@ -3,9 +3,16 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Prices from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Button from '~/components/ui/Button.astro';
+import Image from '~/components/common/Image.astro';
+
+const appStoreImg = '~/assets/images/app-store.png';
+const appStoreDownloadLink = 'https://github.com/arthelokyo/astrowind';
+
+const googlePlayImg = '~/assets/images/google-play.png';
+const googlePlayDownloadLink = 'https://github.com/arthelokyo/astrowind';
 
 const metadata = {
   title: 'Pricing',
@@ -24,87 +31,66 @@ const metadata = {
   <!-- Pricing Widget ******************* -->
 
   <Prices
-    title="Our prices"
-    subtitle="Only pay for what you need"
+    classes={{
+      header: 'text-center',
+      container: '-mt-8 md:-mt-12',
+    }}
     prices={[
       {
-        title: 'basic',
-        subtitle: 'Optimal choice for personal use',
-        price: 29,
-        period: 'per month',
+        title: 'Family',
+        subtitle: 'Perfect for parents caring for their Sprouts.',
+        price: 15,
+        priceYearly: 12,
+        period: '/ month ',
+        periodYearly: '/ month',
         items: [
-          {
-            description: 'Etiam in libero, et volutpat',
-          },
-          {
-            description: 'Aenean ac nunc dolor tristique',
-          },
-          {
-            description: 'Cras scelerisque accumsan lib',
-          },
-          {
-            description: 'In hac habitasse',
-          },
+          { description: '2 guardians included' },
+          { description: 'Unlimited notes & checklists' },
+          { description: 'Track behaviors, routines, and medications' },
+          { description: 'Export progress reports' },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Get started',
+          text: 'Start 7-Day Free Trial',
           href: '#',
         },
       },
       {
-        title: 'standard',
-        subtitle: 'Optimal choice for small teams',
-        price: 69,
-        period: 'Per Month',
+        title: 'Team',
+        subtitle: 'Ideal for larger support networks and organizations.',
+        price: 35,
+        priceYearly: 28,
+        period: '/ month',
+        periodYearly: '/ month',
         items: [
-          {
-            description: 'Proin vel laoreet',
-          },
-          {
-            description: 'Ut efficitur habitasse egestas',
-          },
-          {
-            description: 'Volutpat hac curabitur',
-          },
-          {
-            description: 'Pellentesque blandit ut nibh',
-          },
-          {
-            description: 'Donec fringilla sem',
-          },
+          { description: 'All Family features included' },
+          { description: 'Invite carers and coordinators' },
+          { description: 'Enhanced collaboration tools' },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Get started',
+          text: 'Start 7-Day Free Trial',
           href: '#',
         },
         hasRibbon: true,
-        ribbonTitle: 'popular',
+        ribbonTitle: 'Popular',
       },
       {
-        title: 'premium',
-        subtitle: 'Optimal choice for companies',
-        price: 199,
-        period: 'Per Month',
+        title: 'Pro',
+        subtitle: 'For offices and healthcare professionals.',
+        price: 40,
+        priceYearly: 35,
+        period: '/ month',
+        periodYearly: '/ month',
         items: [
-          {
-            description: 'Curabitur suscipit risus',
-          },
-          {
-            description: 'Aliquam habitasse malesuada',
-          },
-          {
-            description: 'Suspendisse sit amet blandit',
-          },
-          {
-            description: 'Suspendisse auctor blandit dui',
-          },
+          { description: 'All Team features included' },
+          { description: 'Access for health professionals' },
+          { description: 'Advanced reporting & analytics' },
         ],
         callToAction: {
-          target: '_blank',
-          text: 'Get started',
-          href: '#',
+          href: '/saas', // Link to Professionals page
+          text: 'Start 7-Day Free Trial',
+          target: '_self', // or '_blank' if you prefer
         },
       },
     ]}
@@ -113,38 +99,38 @@ const metadata = {
   <!-- Features3 Widget ************** -->
 
   <Features3
-    title="Price-related features"
-    subtitle="Discover the advantages of choosing our plans"
+    title="Why Sproutful is Perfect for You"
+    subtitle="Key benefits of our plans designed for parents, carers, and healthcare professionals"
     columns={2}
     items={[
       {
-        title: 'Tiered Pricing Plans',
-        description: 'Choose from a range of pricing plans designed to accommodate different budgets and requirements.',
+        title: 'Flexible Tiered Plans',
+        description: 'Pick the plan that fits your family or care team — from solo parents to large support networks.',
         icon: 'tabler:stairs',
       },
       {
-        title: 'Transparent Pricing',
-        description: 'Clearly displayed pricing details for each plan, with no hidden costs or unexpected charges.',
+        title: 'Transparent & Simple Pricing',
+        description: 'Know exactly what you’re paying for, with no hidden fees — per Sprout, per month.',
         icon: 'tabler:flip-vertical',
       },
       {
-        title: 'Secure Payment Methods',
-        description: 'Secure payment gateways to protect your financial information during transactions.',
+        title: 'Secure Data & Payments',
+        description: 'All your child’s or client’s information is stored securely, and payments are protected.',
         icon: 'tabler:shield-lock',
       },
       {
-        title: 'Instant Access',
-        description: `Immediate access to your chosen plan's features and templates upon subscription.`,
+        title: 'Instant Access to Tools',
+        description: 'Start tracking routines, medications, and behaviors immediately after subscribing.',
         icon: 'tabler:accessible',
       },
       {
-        title: 'Upgrade Value',
-        description: 'Upgrade to higher-tier plans to unlock more features and benefits for an enhanced experience.',
+        title: 'Upgrade as You Grow',
+        description: 'Easily move to higher-tier plans to support larger families or professional care teams.',
         icon: 'tabler:chevrons-up',
       },
       {
-        title: '24H support',
-        description: 'Questions answered via live chat, email or phone, every calendar day.',
+        title: 'Support When You Need It',
+        description: 'Reach our friendly support team via live chat, email, or phone — every day of the week.',
         icon: 'tabler:headset',
       },
     ]}
@@ -153,77 +139,41 @@ const metadata = {
 
   <!-- Steps Widget ****************** -->
 
-  <Steps
-    title="A guided journey from plans to creativity"
-    tagline="simplified process"
-    isReversed={true}
-    items={[
-      {
-        title: 'Explore plans',
-        icon: 'tabler:number-1',
-      },
-      {
-        title: 'Select a plan',
-        icon: 'tabler:number-2',
-      },
-      {
-        title: 'Sign Up / Log In',
-        icon: 'tabler:number-3',
-      },
-      {
-        title: 'Review order',
-        icon: 'tabler:number-4',
-      },
-      {
-        title: 'Enter payment details',
-        icon: 'tabler:number-5',
-      },
-      {
-        title: 'Confirmation',
-        icon: 'tabler:number-6',
-      },
-      {
-        title: 'Download and start using the template(s)',
-        icon: 'tabler:number-7',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1536816579748-4ecb3f03d72a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
-  />
-
   <!-- FAQs Widget ******************* -->
 
   <FAQs
     title="Pricing FAQs"
-    subtitle="Choosing the right plan is important, and we're here to answer your questions. If you have queries about our pricing options, you're in the right place."
+    subtitle="Choosing the right plan is important — here’s everything you need to know about Sproutful’s pricing and subscriptions."
     columns={1}
     items={[
       {
-        title: 'Do the plans come with customer support?',
+        title: 'Do all plans include support?',
         description:
-          'Absolutely, all plans include access to our dedicated customer support to assist you with any queries or concerns.',
+          'Yes! Every plan includes access to our friendly support team. We’re here to help you set up, manage your Sprouts, and make the most of Sproutful.',
       },
       {
-        title: 'Is there a trial period for the different plans?',
+        title: 'Is there a free trial?',
         description:
-          "Unfortunately, we don't offer trial periods for the plans. However, you can check out our demo section to preview the quality of our templates.",
+          'Yes — every plan comes with a 7-day free trial. You can explore all the features and decide if Sproutful is the right fit before being charged.',
       },
       {
-        title: 'Can I switch between plans?',
+        title: 'Can I change or cancel my plan later?',
         description:
-          'Certainly! You can easily upgrade or downgrade your plan, at any time, to find the one that best suits your evolving requirements.',
+          'Absolutely. You can upgrade, downgrade, or cancel your subscription anytime. Your changes will apply at the end of your current billing period.',
       },
       {
         title: 'What payment methods do you accept?',
-        description:
-          'We accept major credit cards and online payment methods to ensure a convenient and secure transaction process.',
+        description: 'We currently accept major credit and debit cards for all subscriptions.',
       },
       {
-        title: 'Are there any hidden fees beyond the displayed cost?',
+        title: 'Are there any extra or hidden fees?',
         description:
-          'No, the subscription cost covers all the features and templates listed under each plan. There are no hidden fees or extra charges.',
+          'No — what you see is what you pay. All features listed under each plan are included, with no hidden charges or surprise costs.',
+      },
+      {
+        title: 'Can an organization pay for my plan?',
+        description:
+          'Yes. If an organization adds you or your Sprout to their network, they can cover your subscription costs on your behalf.',
       },
     ]}
   />
@@ -231,14 +181,18 @@ const metadata = {
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
-    title="Ready to boost your projects?"
-    subtitle="Join our community of satisfied customers who have transformed their work with our templates."
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get started now',
-        href: '/',
-      },
-    ]}
-  />
+    id="download"
+    title="Download Sproutful today!"
+    subtitle="Stay connected with your Sprouts, track routines, and collaborate with your care team — all from one easy-to-use mobile app."
+  >
+    <div slot="actions" class="flex max-w-sm gap-4">
+      <Button variant="link" href={appStoreDownloadLink}>
+        <Image src={appStoreImg} alt="App Store Image" width={200} />
+      </Button>
+
+      <Button variant="link" href={googlePlayDownloadLink}>
+        <Image src={googlePlayImg} alt="Google Play Image" width={200} />
+      </Button>
+    </div>
+  </CallToAction>
 </Layout>

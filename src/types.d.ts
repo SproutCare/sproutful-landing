@@ -146,7 +146,9 @@ export interface Price {
   subtitle?: string;
   description?: string;
   price?: number | string;
+  priceYearly?: number | string;
   period?: string;
+  periodYearly?: string;
   items?: Array<Item>;
   callToAction?: CallToAction;
   hasRibbon?: boolean;
