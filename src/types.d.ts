@@ -219,6 +219,9 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
+  frameClass?: string;
+  frameBgClass?: string;
+  framePaddingClass?: string;
 }
 
 export interface Team extends Omit<Headline, 'classes'>, Widget {
@@ -278,6 +281,21 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   isReversed?: boolean;
   isAfterContent?: boolean;
   callToAction?: CallToAction;
+  isFramed?: boolean;
+  frameClass?: string;
+  framePaddingClass?: string;
+  frameBgClass?: string;
+  chip?: {
+    label: string;
+    bgClass?: string;
+    textClass?: string;
+    class?: string;
+  };
+  frameIcon?: {
+    name: string;
+    class?: string;
+    wrapperClass?: string;
+  };
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}

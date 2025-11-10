@@ -25,34 +25,43 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <div
-    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
-  >
-    <Headline
-      title={title}
-      subtitle={subtitle}
-      tagline={tagline}
-      classes={{
-        container: 'mb-0 md:mb-0',
-        title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl text-muted dark:text-slate-400',
-      }}
-    />
-    {
-      actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
-              </div>
-            ))
-          ) : (
-            <Fragment set:html={actions} />
-          )}
-        </div>
-      )
-    }
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`w-full mx-auto px-0 md:px-0 ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <div class="w-full mx-auto py-[3.4rem] sm:py-[4.8rem] lg:py-[6.4rem]">
+    <div
+      class="mx-auto w-full border border-border bg-bg-secondary px-6 py-10 text-center backdrop-blur dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_4px_30px_rgba(0,0,0,0.1)] sm:px-12 md:py-14"
+    >
+      <div class="max-w-3xl mx-auto">
+        <Headline
+          title={title}
+          subtitle={subtitle}
+          tagline={tagline}
+          classes={{
+            container: 'mb-0 md:mb-0',
+            title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
+            subtitle: 'text-xl text-muted dark:text-slate-400',
+          }}
+        />
+        {
+          actions && (
+            <div class="w-full sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
+              {Array.isArray(actions) ? (
+                actions.map((action) => (
+                  <div class="flex w-full sm:w-auto">
+                    <Button {...(action || {})} class="w-full sm:mb-0" />
+                  </div>
+                ))
+              ) : (
+                <Fragment set:html={actions} />
+              )}
+            </div>
+          )
+        }
+      </div>
+    </div>
   </div>
 </WidgetWrapper>

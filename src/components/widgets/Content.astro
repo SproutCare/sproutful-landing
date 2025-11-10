@@ -5,6 +5,7 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
+import { Icon } from 'astro-icon/components';
 
 const {
   title = await Astro.slots.render('title'),
@@ -17,18 +18,49 @@ const {
   image = await Astro.slots.render('image'),
   isReversed = false,
   isAfterContent = false,
+  isFramed = false,
+  frameClass = 'w-full max-w-4xl sm:max-w-5xl lg:max-w-6xl mx-auto rounded-[24px] overflow-hidden border border-border bg-bg-secondary',
+  frameBgClass,
+  framePaddingClass = 'px-4 py-[2.8rem] sm:px-8 sm:py-[4.2rem] lg:px-12 lg:py-[5.6rem]',
+  chip,
+  frameIcon,
 
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
-} = Astro.props;
+} = Astro.props as Props & {
+  chip?: {
+    label: string;
+    bgClass?: string;
+    textClass?: string;
+    class?: string;
+  };
+};
+
+const framedDirection = isReversed ? 'lg:flex-row' : 'lg:flex-row-reverse';
+const framedTextClasses =
+  'w-full lg:basis-[45%] flex flex-col gap-6 text-left lg:pl-10 max-w-md sm:max-w-lg mx-auto lg:mx-0';
+const framedImageColumnClasses = 'w-full flex justify-center lg:justify-end basis-auto lg:basis-[55%]';
+const framedImageWrapperClasses = 'relative w-full max-w-[640px] overflow-hidden';
+const framedContentWrapperClasses = `relative z-10 flex flex-col items-center justify-between gap-10 lg:gap-0 ${framedDirection} w-full max-w-4xl sm:max-w-5xl lg:max-w-6xl mx-auto`;
+
+const defaultContentWrapperClasses = `relative z-10 md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`;
+const defaultTextClasses = 'md:basis-1/2 self-center';
+const defaultImageColumnClasses = 'mt-10 md:mt-0 md:basis-1/2';
+const defaultImageWrapperClasses = 'relative m-auto max-w-4xl';
+
+const chipBgClass = chip?.bgClass ?? 'bg-primary';
+const chipTextClass = chip?.textClass ?? 'text-black';
+const chipExtraClass = chip?.class ?? '';
+const frameIconName = frameIcon?.name;
+const frameIconClasses = frameIcon?.class ?? 'w-[26rem] h-[26rem] text-info-yellow/15 dark:text-white/10';
 ---
 
 <WidgetWrapper
   id={id}
   isDark={isDark}
-  containerClass={`max-w-7xl mx-auto ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${classes?.container ?? ''}`}
+  containerClass={`max-w-7xl mx-auto py-4 md:py-6 lg:py-8 ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${classes?.container ?? ''}`}
   bg={bg}
 >
   <Headline
@@ -41,53 +73,101 @@ const {
       subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
     }}
   />
-  <div class="mx-auto max-w-7xl p-4 md:px-8">
-    <div class={`md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`}>
-      <div class="md:basis-1/2 self-center">
-        {content && <div class="mb-12 text-lg dark:text-slate-400" set:html={content} />}
-
-        <ItemGrid
-          items={items}
-          columns={columns}
-          defaultIcon="tabler:check"
-          classes={{
-            container: `gap-y-4 md:gap-y-8`,
-            panel: 'max-w-none',
-            title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
-            icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-primary dark:bg-primary text-white p-1',
-            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-          }}
-        />
-
-        {
-          callToAction && (
-            <div class="mt-8 flex justify-center">
-              <Button variant="primary" {...callToAction} />
-            </div>
-          )
-        }
-      </div>
-      <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
-        {
-          image && (
-            <div class="relative m-auto max-w-4xl">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class="mx-auto w-full rounded-lg"
-                  width={500}
-                  height={500}
-                  widths={[400, 768]}
-                  sizes="(max-width: 768px) 100vw, 432px"
-                  layout="responsive"
-                  {...image}
-                />
+  <div class="mx-auto max-w-7xl px-4 py-3 md:px-8 md:py-6">
+    <div class={`relative ${isFramed ? framePaddingClass : ''}`}>
+      {
+        isFramed && (
+          <div class="absolute inset-0 pointer-events-none flex justify-center">
+            <div class={`relative w-full ${frameClass} ${frameBgClass ?? ''}`}>
+              {frameIconName && (
+                <div
+                  class={`absolute -top-16 transform ${
+                    isReversed ? 'right-0 translate-x-[25%]' : 'left-0 -translate-x-[25%]'
+                  }`}
+                >
+                  <Icon name={frameIconName} class={frameIconClasses} />
+                </div>
               )}
             </div>
-          )
-        }
+          </div>
+        )
+      }
+      <div class={`${isFramed ? framedContentWrapperClasses : defaultContentWrapperClasses}`}>
+        <div class={`${isFramed ? framedTextClasses : defaultTextClasses}`}>
+          {
+            chip && (
+              <div
+                class={`self-start w-fit rounded-full px-3 py-1.5 text-sm font-semibold  tracking-wide ${chipBgClass} ${chipTextClass} ${chipExtraClass}`}
+              >
+                {chip.label}
+              </div>
+            )
+          }
+          {
+            content && (
+              <div
+                class={`${
+                  isFramed
+                    ? 'text-lg leading-relaxed text-gray-700 dark:text-gray-200 space-y-4'
+                    : 'mb-12 text-lg dark:text-slate-400'
+                }`}
+                set:html={content}
+              />
+            )
+          }
+
+          <ItemGrid
+            items={items}
+            columns={columns}
+            defaultIcon="tabler:check"
+            classes={{
+              container: `gap-y-4 md:gap-y-8 ${isFramed ? 'justify-start' : ''}`,
+              panel: 'max-w-none',
+              title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+              description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
+              icon: 'flex h20 w-10 items-center justify-center rounded-full bg-primary dark:bg-primary text-white p-2',
+              action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            }}
+          />
+
+          {
+            callToAction && (
+              <div class={`flex ${isFramed ? 'justify-start lg:justify-start pt-6 lg:pt-8' : 'justify-center mt-10'}`}>
+                <Button variant="primary" class={isFramed ? 'w-full lg:w-auto' : ''} {...callToAction} />
+              </div>
+            )
+          }
+        </div>
+        <div aria-hidden="true" class={`${isFramed ? framedImageColumnClasses : defaultImageColumnClasses}`}>
+          {
+            image && (
+              <div class={`${isFramed ? framedImageWrapperClasses : defaultImageWrapperClasses}`}>
+                {isFramed && frameIconName && (
+                  <div
+                    class={`pointer-events-none absolute -top-16 ${
+                      isReversed ? '-left-16' : '-right-16'
+                    } ${frameIcon?.wrapperClass ?? ''}`}
+                  >
+                    <Icon name={frameIconName} class={frameIconClasses} />
+                  </div>
+                )}
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class={`relative z-10 mx-auto w-full rounded-lg ${isFramed ? 'drop-shadow-xl' : ''}`}
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    {...image}
+                  />
+                )}
+              </div>
+            )
+          }
+        </div>
       </div>
     </div>
   </div>

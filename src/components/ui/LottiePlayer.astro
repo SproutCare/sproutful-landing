@@ -1,0 +1,45 @@
+---
+const {
+  src,
+  autoplay = true,
+  loop = true,
+  class: className = '',
+} = Astro.props as {
+  src: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  class?: string;
+};
+
+const elementId = `lottie-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<div id={elementId} class={`lottie-container ${className}`}></div>
+
+<style>
+  .lottie-container {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script define:vars={{ elementId, src, autoplay, loop }}>
+  (async () => {
+    if (typeof window === 'undefined') return;
+
+    const container = document.getElementById(elementId);
+    if (!container) return;
+
+    const [{ default: lottie }, response] = await Promise.all([import('lottie-web'), fetch(src)]);
+
+    const animationData = await response.json();
+
+    lottie.loadAnimation({
+      container,
+      renderer: 'svg',
+      autoplay,
+      loop,
+      animationData,
+    });
+  })();
+</script>

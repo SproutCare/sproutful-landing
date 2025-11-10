@@ -1,4 +1,4 @@
-import { getPermalink,  getAsset } from './utils/permalinks';
+import { getPermalink} from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -27,60 +27,52 @@ export const footerData = {
     {
       title: 'Product',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Features', href: '/#features' },
+        { text: 'Plans & Pricing', href: '/#pricing' },
+        { text: 'Download the App', href: '/#download' },
+        { text: 'Security', href: '/#security' },
+        { text: 'FAQ', href: '/#faq' },
       ],
     },
     {
-      title: 'Platform',
+      title: 'For Families',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'How it Works', href: '/#how-it-works' },
+        { text: 'Add Your Sprouts', href: '/#steps' },
+        { text: 'Invite Carers & Professionals', href: '/#collaboration' },
+        { text: 'Stories from Families', href: '/#stories' },
       ],
     },
     {
-      title: 'Support',
+      title: 'For Professionals',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'For Organizations', href: '/#organizations' },
+        { text: 'For Carers', href: '/#carers' },
+        { text: 'For Coordinators', href: '/#coordinators' },
+        { text: 'Partner with Sproutful', href: '/#partners' },
       ],
     },
     {
       title: 'Company',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'About Us', href: '/about' },
+        { text: 'Blog', href: '/blog' },
+        { text: 'Careers', href: '/careers' },
+        { text: 'Contact', href: '/contact' },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
+    { text: 'Terms of Service', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: '#' },
+    { ariaLabel: 'X (Twitter)', icon: 'tabler:brand-x', href: '#' },
   ],
   footNote: `
-    Made by <a class="text-primary underline dark:text-muted" href="https://github.com/arthelokyo"> Arthelokyo</a> · All rights reserved.
+    © ${new Date().getFullYear()} Sproutful. Made with care for families and professionals around the world.
   `,
 };

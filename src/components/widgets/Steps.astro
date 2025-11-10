@@ -28,12 +28,18 @@ const {
         subtitle={subtitle}
         tagline={tagline}
         classes={{
-          container: 'text-left rtl:text-right',
+          container: 'text-center',
           title: 'text-3xl lg:text-4xl',
           ...((classes?.headline as object) ?? {}),
         }}
       />
-      <Timeline items={items} classes={classes?.items as Record<string, never>} />
+      <Timeline
+        items={items}
+        classes={{
+          ...(classes?.items as Record<string, string>),
+          icon: 'bg-primary text-white border-primary',
+        }}
+      />
     </div>
     {
       image && (

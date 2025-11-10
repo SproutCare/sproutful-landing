@@ -4,14 +4,11 @@ import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
 import { headerData } from '~/navigation';
 
-import Hero2 from '~/components/widgets/Hero2.astro';
+import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
-
 import Button from '~/components/ui/Button.astro';
 import Image from '~/components/common/Image.astro';
 
@@ -21,9 +18,10 @@ const appStoreDownloadLink = 'https://github.com/arthelokyo/astrowind';
 const googlePlayImg = '~/assets/images/google-play.png';
 const googlePlayDownloadLink = 'https://github.com/arthelokyo/astrowind';
 
-import appImage from '~/assets/images/mobile-app2.jpg';
-import appImage2 from '~/assets/images/mobile-app3.jpg';
-import appImage3 from '~/assets/images/mobile-app5.png';
+import heroImage from '~/assets/images/hero.png';
+import notes from '~/assets/images/notes.png';
+import Features2 from '~/components/widgets/Features2.astro';
+
 const metadata = {
   title: 'Mobile App Homepage',
 };
@@ -52,17 +50,16 @@ const metadata = {
     />
   </Fragment>
 
-  <!-- Hero2 Widget ******************* -->
+  <!-- Hero Widget ******************* -->
 
-  <Hero2
+  <Hero
     image={{
-      src: appImage3,
-      alt: 'Sproutful Hero Image',
+      src: heroImage,
+      alt: 'Sproutful app preview',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
     }}
   >
-    <Fragment slot="title">
-      <span class="text-primary">Sproutful Mobile App</span>: <br /> keeping families and carers connected
-    </Fragment>
+    <Fragment slot="title">Everything You Need to Care with Confidence.</Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline"> Stay connected with your loved ones and support team in real time. </span>
@@ -78,92 +75,177 @@ const metadata = {
         <Image src={googlePlayImg} alt="Google Play Image" width={200} />
       </Button>
     </div>
-  </Hero2>
+  </Hero>
 
-  <!-- Features3 Widget ************** -->
+  <Features2
+    isReversed
+    title="Tools to Track, Share, and Support"
+    subtitle="Whether you are parents or a full team, Sproutful keeps everyone on the same page with real-time updates, shared care networks, and actionable insights. Let's get everyone on the same page, together."
+    items={[
+      {
+        title: 'Behavior Tracking',
+        description:
+          'Track behaviors of concern with context — what happened, triggers, responses, and outcomes — to guide effective support strategies.',
+        icon: 'tabler:zoom-check-filled',
+        classes: { icon: 'text-behaviour-purple' },
+      },
+      {
+        title: 'Food, Sleep & Incidents',
+        description:
+          'Record meals, rest patterns, and incidents to identify patterns that may contribute to challenging behaviors or wellbeing changes.',
+        icon: 'tabler:file-description-filled',
+        classes: { icon: 'text-general-blue' },
+      },
+      {
+        title: 'Goals & Observations',
+        description:
+          'Document progress toward behavior plans, daily goals, and therapeutic outcomes — sharing updates across the care network.',
+        icon: 'tabler:target',
+        classes: { icon: 'text-incident-pink' },
+      },
+      {
+        title: 'Tasks, Medications, & Reminders',
+        description: 'Never miss a thing. Set recurring tasks, medications, and reminders to keep everyone on track.',
+        icon: 'tabler:bell-ringing-2-filled',
+        classes: { icon: 'text-medication-green' },
+      },
+      {
+        title: 'Shared Care Network',
+        description:
+          'Bring together family members, carers, and professionals in one secure, synchronized space for consistent communication.',
+        icon: 'tabler:message-filled',
+        classes: { icon: 'text-info-yellow' },
+      },
+      {
+        title: 'Data & Insights',
+        description:
+          "See progress over time. Track behaviors, routines, and outcomes to see what works and what doesn't.",
+        icon: 'tabler:graph-filled',
+        classes: { icon: 'text-primary' },
+      },
+    ]}
+  />
 
   <!-- Content Widget **************** -->
 
+  <!-- Feature: Notes & Records -->
   <Content
+    isFramed
+    chip={{
+      label: 'Record',
+      bgClass: 'bg-behaviour-purple/40',
+      textClass: 'text-default',
+    }}
+    frameIcon={{
+      name: 'tabler:notes',
+      class: 'w-100 h-100 text-info-yellow/20',
+    }}
+    frameBgClass="bg-bg-secondary"
+    image={{
+      src: notes,
+      alt: 'Mobile app showing note-taking for behaviors and daily logs',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
+    }}
+    callToAction={{ text: 'Start tracking today', href: '/pricing' }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
+        Stay on top of every moment
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Log behaviors, routines, and milestones effortlessly — everything organized, searchable, and shared with your
+        care network in real time.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Content
+    isFramed
     isReversed
-    title="Everything You Need to Care with Confidence"
-    items={[
-      {
-        title: 'Note Taking',
-        description:
-          'Keep detailed records of behaviors, meals, medications, sleep patterns, and any incidents — all organized in one easy-to-access place.',
-        icon: 'tabler:edit',
-      },
-      {
-        title: 'Checklists',
-        description:
-          'Set up tasks, medications, and routines with notifications, helping carers stay on track and ensuring Sprouts receive consistent care.',
-        icon: 'tabler:checklist',
-      },
-      {
-        title: 'Statistics',
-        description:
-          'View insightful statistics about each Sprout and the overall care network, helping families track progress and spot trends over time.',
-        icon: 'tabler:chart-bar',
-      },
-      {
-        title: 'Real-time updates',
-        description:
-          'Receive instant updates from carers and health professionals, keeping everyone in your care network informed and aligned.',
-        icon: 'tabler:clock',
-      },
-    ]}
-    image={{
-      src: appImage,
-      alt: 'Mobile app displaying notes, checklists, and statistics',
+    chip={{
+      label: 'Collaborate',
+      bgClass: 'bg-medication-green/40',
+      textClass: 'text-default',
     }}
+    frameBgClass="bg-bg-secondary"
+    image={{
+      src: notes,
+      alt: 'Mobile notifications and updates feed',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
+    }}
+    callToAction={{ text: 'Get connected today', href: '/pricing' }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
-    </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white dark:bg-page"></div>
+      <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
+        Always in the loop
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Get instant updates and chat in real time — keeping family, carers, and professionals connected so support stays
+        aligned and consistent, every step of the way. Never wonder what’s going on — stay informed, always.
+      </p>
     </Fragment>
   </Content>
 
   <Content
-    isAfterContent
-    items={[
-      {
-        title: 'Secure Data Storage',
-        description:
-          'All information is encrypted and safely stored, ensuring privacy while keeping it accessible for authorized family members and carers.',
-        icon: 'tabler:shield-check',
-      },
-      {
-        title: 'Customizable Notifications',
-        description: 'Set reminders for medications, tasks, or routines, so no important care activity is missed.',
-        icon: 'tabler:bell',
-      },
-
-      {
-        title: 'Intuitive Dashboard',
-        description:
-          'Quickly see the status of all Sprouts in your care, track recent updates, and spot trends at a glance.',
-        icon: 'tabler:layout-dashboard',
-      },
-    ]}
-    image={{
-      src: appImage2,
-      alt: 'Mobile app dashboard with tasks and statistics',
+    isFramed
+    chip={{
+      label: 'Insights',
+      bgClass: 'bg-warning-orange/40',
+      textClass: 'text-default',
     }}
+    frameBgClass="bg-bg-secondary"
+    frameIcon={{
+      name: 'tabler:chart-pie-filled',
+      class: 'w-100 h-100 text-info-yellow/20',
+    }}
+    image={{
+      src: notes,
+      alt: 'App dashboard showing behavior charts and progress statistics',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
+    }}
+    callToAction={{ text: 'Start seeing progress today', href: '/pricing' }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Additional Features</h3>
-    </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white dark:bg-page"></div>
+      <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
+        See the progress that matters
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Turn everyday notes into meaningful patterns. Visualize behavior trends, track routines, and celebrate growth —
+        all in one clear, data-driven view.
+      </p>
     </Fragment>
   </Content>
-
-  <Steps
-    title="A guided journey to better care"
-    tagline="Simplified process for families"
+  <Content
+    isFramed
+    isReversed
+    chip={{
+      label: 'Organise',
+      bgClass: 'bg-general-blue/40',
+      textClass: 'text-default',
+    }}
+    frameBgClass="bg-bg-secondary"
+    image={{
+      src: notes,
+      alt: 'Checklist interface showing routines and medication tasks',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
+    }}
+    callToAction={{ text: 'Find structure today', href: '/pricing' }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
+        Never miss a step
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Stay organized with smart checklists and reminders that keep daily routines running smoothly. Whether it’s a
+        morning task or a weekly goal, you’ll always know what’s next — and when it’s done.
+      </p>
+    </Fragment>
+  </Content>
+  <!-- Steps Widget ****************** -->
+  <!-- <Steps
+    bg={`<div class="absolute inset-0 bg-bg-secondary"></div>`}
+    title="We’ll guide you every step of the way."
+    subtitle="Getting started with Sproutful is easy. Let's get you set up in no time."
     isReversed={true}
     items={[
       {
@@ -206,28 +288,127 @@ const metadata = {
         icon: 'tabler:number-7',
       },
     ]}
-  />
+  /> -->
+  <!-- Feature: Smart Checklists -->
+  <!-- <Content
+    items={[
+      {
+        title: 'Daily & Recurring Tasks',
+        description:
+          'Plan daily routines, supports, and interventions to reinforce structure and reduce anxiety or challenging behaviors.',
+        icon: 'tabler:checklist',
+      },
+      {
+        title: 'Real-Time Updates',
+        description:
+          'Know immediately when critical supports or strategies are completed — ensuring behavior plans are followed consistently.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Smart Notifications',
+        description: 'Get timely reminders and alerts so no behavior support step or medication is ever missed.',
+        icon: 'tabler:bell',
+      },
+    ]}
+    image={{
+      src: appImage3,
+      alt: 'Checklist interface showing routines and medication tasks',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-semibold tracking-tight dark:text-white sm:text-3xl mb-2">Smart Checklists</h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Maintain structure and reliability with reminders that keep carers on schedule — a vital part of effective
+        behavioral and emotional support.
+      </p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-page"></div>
+    </Fragment>
+  </Content> -->
+
+  <!-- Feature: Insights & Progress -->
+  <!-- <Content
+    isReversed
+    items={[
+      {
+        title: 'Behavior & Routine Trends',
+        description:
+          'Identify when and where behaviors of concern occur — uncovering patterns and triggers to improve support plans.',
+        icon: 'tabler:chart-bar',
+      },
+      {
+        title: 'Progress Tracking',
+        description:
+          'Visualize reduction in behaviors, skill development, and consistency in routines — helping families and teams celebrate real progress.',
+        icon: 'tabler:chart-pie',
+      },
+    ]}
+    image={{
+      src: appImage3,
+      alt: 'App dashboard showing behavior charts and progress statistics',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-semibold tracking-tight dark:text-white sm:text-3xl mb-2">Insights & Progress</h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Turn everyday notes into actionable insights — empowering carers and professionals to respond proactively and
+        refine behavior support strategies.
+      </p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-page"></div>
+    </Fragment>
+  </Content> -->
+
+  <!-- Feature: Stay Connected -->
+  <!-- <Content
+    items={[
+      {
+        title: 'Instant Notifications',
+        description:
+          'Receive alerts when new behavior notes, incidents, or checklist updates are logged — in real time.',
+        icon: 'tabler:bell',
+      },
+      {
+        title: 'Shared Care Network',
+        description:
+          'Bring together family members, carers, and professionals in one secure, synchronized space for consistent communication.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'In-App Chat',
+        description:
+          'Connect instantly with family, carers, and health professionals — keeping everyone aligned and supported in behavior planning.',
+        icon: 'tabler:message-circle',
+      },
+    ]}
+    image={{
+      src: appImage3,
+      alt: 'Mobile notifications and updates feed',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-semibold tracking-tight dark:text-white sm:text-3xl mb-2">Stay Connected</h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        Communication is seamless — from instant alerts to in-app chat — ensuring every member of the care team stays
+        informed and behavior support plans stay on track.
+      </p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-page"></div>
+    </Fragment>
+  </Content> -->
 
   <CallToAction
     id="pricing"
-    title="Flexible Pricing Plans"
-    subtitle="Choose the plan that fits your care network — see full details on our Pricing page."
+    title="Plans that grow with you"
+    subtitle="Whether you’re caring for one loved one or managing a full network, there’s a plan that fits your journey."
   >
     <div slot="actions" class="flex justify-center">
-      <Button variant="primary" href="/pricing"> View Pricing </Button>
+      <Button variant="primary" href="/pricing"> Explore Plans </Button>
     </div>
   </CallToAction>
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    title="Sproutful in numbers"
-    stats={[
-      { amount: '10K+', icon: 'tabler:users' },
-      { amount: '25K+', icon: 'tabler:check' },
-      { amount: '5K+', icon: 'tabler:star' },
-    ]}
-  />
 
   <!-- Testimonials Widget *********** -->
 
@@ -235,7 +416,7 @@ const metadata = {
     title="What our users say"
     testimonials={[
       {
-        testimonial: `Sproutful has completely changed how I keep track of my son's daily routines. I can see his progress at a glance, and our carers are all updated in real time — it’s a lifesaver!`,
+        testimonial: `Sproutful has completely changed how I keep track of my son's daily routines. I can see his progress at a glance, and our carers are all updated in real time — it's a lifesaver!`,
         name: 'Bec Harrison',
         job: 'Parent',
         image: {
@@ -253,7 +434,7 @@ const metadata = {
         },
       },
       {
-        testimonial: `I love how Sproutful lets me track my daughter’s routines, medications, and milestones all in one app. It's simple to use and keeps the whole family aligned and informed.`,
+        testimonial: `I love how Sproutful lets me track my daughter's routines, medications, and milestones all in one app. It's simple to use and keeps the whole family aligned and informed.`,
         name: 'Lara Chen',
         job: 'Parent',
         image: {
@@ -262,12 +443,6 @@ const metadata = {
         },
       },
     ]}
-    callToAction={{
-      target: '_blank',
-      text: 'Read more testimonials',
-      href: '#', // replace with actual link if available
-      icon: 'tabler:chevron-right',
-    }}
   />
 
   <FAQs
@@ -279,19 +454,19 @@ const metadata = {
           'Sproutful is designed for families and carers to collaboratively support Sprouts — your loved ones — in their daily routines and care activities.',
       },
       {
-        title: 'How do I track my Sprout’s routines?',
+        title: "How do I track my Sprout's routines?",
         description:
-          'Use Sproutful’s checklists, logs, and notifications to track tasks, behaviors, medications, and milestones. Updates are instantly shared across your care network.',
+          "Use Sproutful's checklists, logs, and notifications to track tasks, behaviors, medications, and milestones. Updates are instantly shared across your care network.",
       },
       {
         title: 'Can multiple carers collaborate?',
         description:
-          'Yes! You can invite family members, support workers, and coordinators to join your Sprout’s care network so everyone stays connected and up to date.',
+          "Yes! You can invite family members, support workers, and coordinators to join your Sprout's care network so everyone stays connected and up to date.",
       },
       {
         title: 'Is my data secure?',
         description:
-          'Absolutely. Sproutful encrypts all data and restricts access to authorized users only, keeping your family’s information private and safe.',
+          "Absolutely. Sproutful encrypts all data and restricts access to authorized users only, keeping your family's information private and safe.",
       },
       {
         title: 'Is there a cost?',
