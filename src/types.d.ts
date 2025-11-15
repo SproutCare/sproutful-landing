@@ -153,6 +153,8 @@ export interface Price {
   callToAction?: CallToAction;
   hasRibbon?: boolean;
   ribbonTitle?: string;
+  chipBgClass?: string;
+  chipTextClass?: string;
 }
 
 export interface Testimonial {

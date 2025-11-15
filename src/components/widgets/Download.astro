@@ -1,0 +1,157 @@
+---
+// src/components/widgets/Download.astro
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import { Icon } from 'astro-icon/components';
+import Image from '~/components/common/Image.astro';
+import { twMerge } from 'tailwind-merge';
+
+interface DownloadButton {
+  text: string;
+  href: string;
+  image?: string; // Image path for app store buttons
+  imageAlt?: string;
+  imageWidth?: number;
+  icon?: string; // Icon name from icon library
+  iconSvg?: string; // Custom SVG icon
+  variant?: 'default' | 'primary' | 'secondary' | 'link';
+}
+
+interface DownloadCard {
+  title: string;
+  description: string;
+  icon?: string;
+  iconSvg?: string;
+  link?: {
+    text: string;
+    href: string;
+  };
+  buttons: DownloadButton[];
+  classes?: {
+    panel?: string;
+    icon?: string;
+    title?: string;
+    description?: string;
+  };
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  cards: DownloadCard[];
+  columns?: number;
+  id?: string;
+  isDark?: boolean;
+  classes?: {
+    container?: string;
+    headline?: Record<string, string>;
+  };
+  bg?: string;
+}
+
+const {
+  title = '',
+  subtitle = '',
+  tagline = '',
+  cards = [],
+  columns = 2,
+  id,
+  isDark = false,
+  classes = {},
+  bg,
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-4xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      title: 'text-4xl md:text-5xl font-bold tracking-tight mb-6 font-heading',
+      ...((classes?.headline as Record<string, string>) ?? {}),
+    }}
+  />
+  {
+    cards && cards.length > 0 && (
+      <div
+        class={twMerge(
+          `grid gap-8 gap-x-12 sm:gap-y-8 max-w-6xl mx-auto px-4 pt-0 sm:px-8 sm:pt-0 lg:px-12 lg:pt-0 pb-[2.8rem] sm:pb-[4.2rem] lg:pb-[5.6rem] ${
+            columns === 4
+              ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
+              : columns === 3
+                ? 'lg:grid-cols-3 sm:grid-cols-2'
+                : columns === 2
+                  ? 'sm:grid-cols-2 '
+                  : ''
+          }`
+        )}
+      >
+        {cards.map((card) => (
+          <div
+            class={twMerge(
+              'relative flex flex-col h-auto w-full rounded-[16px] px-4 py-8 lg:self-stretch lg:p-8 bg-white dark:bg-slate-900 border border-border',
+              card.classes?.panel
+            )}
+          >
+            {/* Icon */}
+            {/* Icon */}
+            {(card.icon || card.iconSvg) && (
+              <div class="mb-6">
+                {card.iconSvg ? (
+                  <Fragment set:html={card.iconSvg} />
+                ) : (
+                  <Icon name={card.icon!} class={twMerge('w-10 h-10', card.classes?.icon || 'text-primary')} />
+                )}
+              </div>
+            )}
+
+            {/* Title */}
+            <h5 class={twMerge('text-xl font-bold mb-2', card.classes?.title)}>{card.title}</h5>
+
+            {/* Description */}
+            <p class={twMerge('text-muted mb-4', card.classes?.description)}>{card.description}</p>
+
+            {/* Optional Link */}
+            {card.link && (
+              <a href={card.link.href} class="link-default-animated mb-auto">
+                {card.link.text}
+              </a>
+            )}
+
+            {/* Buttons */}
+            {card.buttons && card.buttons.length > 0 && (
+              <div class="flex flex-col gap-4 mb-auto mt-3">
+                {card.buttons.map((button) => (
+                  <a
+                    href={button.href}
+                    class={twMerge(
+                      'group rounded-[15px] text-center transition-all ease-in-out hover:-translate-y-0 min-w-[100px] px-6 py-2.5 bg-transparent border border-black dark:border-white hover:bg-primary hover:border-primary dark:hover:bg-primary dark:hover:border-primary flex items-center justify-center',
+                      button.variant === 'primary' && 'border-black dark:border-white',
+                      button.variant === 'secondary' && 'border-black dark:border-white'
+                    )}
+                  >
+                    <span class="whitespace-nowrap text-sm font-medium text-black group-hover:text-white dark:text-white dark:group-hover:text-white flex items-center justify-center gap-2">
+                      {button.image && (
+                        <Image
+                          src={button.image}
+                          alt={button.imageAlt || button.text}
+                          width={button.imageWidth || 24}
+                          class="h-6 w-auto"
+                        />
+                      )}
+                      {button.iconSvg && !button.image && <span class="h-6 w-6" set:html={button.iconSvg} />}
+                      {button.icon && !button.image && !button.iconSvg && <Icon name={button.icon} class="h-6 w-6" />}
+                      {button.text}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )
+  }
+</WidgetWrapper>

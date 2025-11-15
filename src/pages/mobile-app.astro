@@ -80,46 +80,42 @@ const metadata = {
   <Features2
     isReversed
     title="Tools to Track, Share, and Support"
-    subtitle="Whether you are parents or a full team, Sproutful keeps everyone on the same page with real-time updates, shared care networks, and actionable insights. Let's get everyone on the same page, together."
+    subtitle="Sproutful keeps everyone on the same page with real-time updates, shared care networks, and actionable insights."
     items={[
       {
-        title: 'Behavior Tracking',
-        description:
-          'Track behaviors of concern with context — what happened, triggers, responses, and outcomes — to guide effective support strategies.',
-        icon: 'tabler:zoom-check-filled',
+        title: 'Behaviors, Meals & Wellness',
+        description: 'Log behaviors, meals, sleep, and incidents together to see daily routines and identify patterns.',
+        icon: 'tabler:file-text-filled',
         classes: { icon: 'text-behaviour-purple' },
       },
       {
-        title: 'Food, Sleep & Incidents',
+        title: 'Stay in the Loop',
         description:
-          'Record meals, rest patterns, and incidents to identify patterns that may contribute to challenging behaviors or wellbeing changes.',
-        icon: 'tabler:file-description-filled',
+          'Attach photos, videos, and notes to each entry so you can see progress firsthand and keep everyone accountable.',
+        icon: 'tabler:binoculars-filled',
         classes: { icon: 'text-general-blue' },
       },
       {
         title: 'Goals & Observations',
-        description:
-          'Document progress toward behavior plans, daily goals, and therapeutic outcomes — sharing updates across the care network.',
+        description: 'Document progress toward plans and daily goals, and share updates across the care network.',
         icon: 'tabler:target',
         classes: { icon: 'text-incident-pink' },
       },
       {
-        title: 'Tasks, Medications, & Reminders',
-        description: 'Never miss a thing. Set recurring tasks, medications, and reminders to keep everyone on track.',
+        title: 'Tasks, Medications & Reminders',
+        description: 'Set recurring tasks, medications, and reminders to stay organized and on track.',
         icon: 'tabler:bell-ringing-2-filled',
         classes: { icon: 'text-medication-green' },
       },
       {
         title: 'Shared Care Network',
-        description:
-          'Bring together family members, carers, and professionals in one secure, synchronized space for consistent communication.',
+        description: 'Connect family, carers, and professionals in one secure space for consistent communication.',
         icon: 'tabler:message-filled',
         classes: { icon: 'text-info-yellow' },
       },
       {
         title: 'Data & Insights',
-        description:
-          "See progress over time. Track behaviors, routines, and outcomes to see what works and what doesn't.",
+        description: 'Track trends over time to see what works, spot patterns, and inform decisions.',
         icon: 'tabler:graph-filled',
         classes: { icon: 'text-primary' },
       },
@@ -133,8 +129,8 @@ const metadata = {
     isFramed
     chip={{
       label: 'Record',
-      bgClass: 'bg-behaviour-purple/40',
-      textClass: 'text-default',
+      bgClass: 'bg-behaviour-purple',
+      textClass: 'text-white',
     }}
     frameIcon={{
       name: 'tabler:notes',
@@ -164,8 +160,8 @@ const metadata = {
     isReversed
     chip={{
       label: 'Collaborate',
-      bgClass: 'bg-medication-green/40',
-      textClass: 'text-default',
+      bgClass: 'bg-medication-green',
+      textClass: 'text-white',
     }}
     frameBgClass="bg-bg-secondary"
     image={{
@@ -186,12 +182,13 @@ const metadata = {
     </Fragment>
   </Content>
 
+  <!-- Feature: Insights & Progress -->
   <Content
     isFramed
     chip={{
       label: 'Insights',
-      bgClass: 'bg-warning-orange/40',
-      textClass: 'text-default',
+      bgClass: 'bg-warning-orange/80',
+      textClass: 'text-white',
     }}
     frameBgClass="bg-bg-secondary"
     frameIcon={{
@@ -209,19 +206,25 @@ const metadata = {
       <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
         See the progress that matters
       </h3>
-      <p class="text-gray-700 dark:text-gray-300">
+      <p class="text-gray-700 dark:text-gray-300 mb-3">
         Turn everyday notes into meaningful patterns. Visualize behavior trends, track routines, and celebrate growth —
         all in one clear, data-driven view.
       </p>
+      <p class="text-gray-700 dark:text-gray-300">
+        You can export your logs for personal records, or invite a health professional to view your Sprout's progress
+        and provide insights.
+      </p>
     </Fragment>
   </Content>
+
+  <!-- Feature: Smart Checklists -->
   <Content
     isFramed
     isReversed
     chip={{
       label: 'Organise',
-      bgClass: 'bg-general-blue/40',
-      textClass: 'text-default',
+      bgClass: 'bg-general-blue',
+      textClass: 'text-white',
     }}
     frameBgClass="bg-bg-secondary"
     image={{
@@ -236,7 +239,7 @@ const metadata = {
         Never miss a step
       </h3>
       <p class="text-gray-700 dark:text-gray-300">
-        Stay organized with smart checklists and reminders that keep daily routines running smoothly. Whether it’s a
+        Stay organised with smart checklists and reminders that keep daily routines running smoothly. Whether it’s a
         morning task or a weekly goal, you’ll always know what’s next — and when it’s done.
       </p>
     </Fragment>
@@ -451,17 +454,22 @@ const metadata = {
       {
         title: 'Who can use Sproutful?',
         description:
-          'Sproutful is designed for families and carers to collaboratively support Sprouts — your loved ones — in their daily routines and care activities.',
+          'Sproutful is designed for families, carers, and professionals — but you don’t need a full team to get started. Parents can use the mobile app independently to organize daily routines, track behaviors, and manage medications.',
       },
       {
         title: "How do I track my Sprout's routines?",
         description:
-          "Use Sproutful's checklists, logs, and notifications to track tasks, behaviors, medications, and milestones. Updates are instantly shared across your care network.",
+          "Use Sproutful's checklists, logs, and notifications to track tasks, behaviors, medications, and milestones. Updates are instantly shared across your care network if you have one, or just kept private for your own reference.",
       },
       {
         title: 'Can multiple carers collaborate?',
         description:
-          "Yes! You can invite family members, support workers, and coordinators to join your Sprout's care network so everyone stays connected and up to date.",
+          "Yes! You can invite family members, support workers, and coordinators to join your Sprout's care network so everyone stays connected and up to date. Collaboration is optional — the app works fully for single users too.",
+      },
+      {
+        title: 'Can I export my notes and logs?',
+        description:
+          'Absolutely. Parents and coordiantors can export behavior logs, checklists, and notes from the mobile app to keep records, share with professionals, or for personal reference.',
       },
       {
         title: 'Is my data secure?',

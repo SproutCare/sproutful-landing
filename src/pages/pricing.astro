@@ -22,10 +22,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText
-    title="Stellar Pricing for Every Journey"
-    subtitle="Choose the perfect plan that aligns with your cosmic goals."
-  />
+  <HeroText title="Which Sproutful is right for me?" subtitle="Choose the perfect plan that fits your needs" />
 
   <!-- Pricing Widget ******************* -->
 
@@ -37,11 +34,13 @@ const metadata = {
     prices={[
       {
         title: 'Family',
-        subtitle: 'Perfect for parents caring for their Sprouts.',
+        subtitle: 'Perfect for parents caring for a single Sprout.',
         price: 15,
         priceYearly: 12,
-        period: '/ month ',
-        periodYearly: '/ month',
+        period: '/ month',
+        periodYearly: ' / month',
+        chipBgClass: 'bg-general-blue',
+        chipTextClass: 'text-white',
         items: [
           { description: '2 guardians included' },
           { description: 'Unlimited notes & checklists' },
@@ -56,11 +55,13 @@ const metadata = {
       },
       {
         title: 'Team',
-        subtitle: 'Ideal for larger support networks and organizations.',
+        subtitle: 'For multiple clients or larger care networks.',
         price: 35,
         priceYearly: 28,
         period: '/ month',
-        periodYearly: '/ month',
+        periodYearly: ' / month',
+        chipBgClass: 'bg-behaviour-purple',
+        chipTextClass: 'text-white',
         items: [
           { description: 'All Family features included' },
           { description: 'Invite carers and coordinators' },
@@ -76,20 +77,22 @@ const metadata = {
       },
       {
         title: 'Pro',
-        subtitle: 'For offices and healthcare professionals.',
+        subtitle: 'For healthcare professionals and offices.',
         price: 40,
         priceYearly: 35,
-        period: '/ month',
-        periodYearly: '/ month',
+        period: '/ client / month',
+        periodYearly: '/ client / month',
+        chipBgClass: 'bg-incident-pink',
+        chipTextClass: 'text-white',
         items: [
           { description: 'All Team features included' },
           { description: 'Access for health professionals' },
           { description: 'Advanced reporting & analytics' },
         ],
         callToAction: {
-          href: '/saas', // Link to Professionals page
+          href: '/saas',
           text: 'Start 7-Day Free Trial',
-          target: '_self', // or '_blank' if you prefer
+          target: '_self',
         },
       },
     ]}

@@ -1,364 +1,207 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Image from '~/components/common/Image.astro';
-import landingHero from '~/assets/images/landing-hero.jpg';
-import mobileAppImage from '~/assets/images/mobile-app.jpg';
-import webAppImage from '~/assets/images/web-app.jpg';
-
 import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import Features from '~/components/widgets/Features.astro';
-import Content from '~/components/widgets/Content.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-const appStoreImg = '~/assets/images/app-store.png';
-const appStoreDownloadLink = 'https://github.com/arthelokyo/astrowind';
-
-const googlePlayImg = '~/assets/images/google-play.png';
-const googlePlayDownloadLink = 'https://github.com/arthelokyo/astrowind';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import Button from '~/components/ui/Button.astro';
-const metadata = {
-  title: 'Sproutful — Connected care, simplified',
-  ignoreTitleTemplate: true,
-};
+import heroImage from '~/assets/images/hero.png';
+import Stats from '~/components/widgets/Stats.astro';
+import TimelineImage from '~/assets/images/timeline.png';
+import Content from '~/components/widgets/Content.astro';
+const appStoreDownloadLink = 'https://github.com/arthelokyo/astrowind';
+const googlePlayDownloadLink = 'https://github.com/arthelokyo/astrowind';
+import Download from '~/components/widgets/Download.astro';
+const metadata = { title: 'Sproutful — Connected care, simplified', ignoreTitleTemplate: true };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
-  <Hero id="hero">
-    <Fragment slot="title">
-      <span class="text-white">Stay in the loop. Stay <span class="text-primary">connected</span>.</span>
-    </Fragment>
-
+  <Hero
+    id="hero"
+    image={{
+      src: heroImage,
+      alt: 'Sproutful platform for managing support for people with disabilities',
+      style: 'object-fit: contain; height:auto; max-height:500px; width:100%;',
+    }}
+  >
+    <Fragment slot="title">Support every day, for every ability.</Fragment>
     <Fragment slot="subtitle">
-      <span class="text-white"
-        >Sproutful bridges the gap between families, therapists, and support teams — so care continues smoothly, even
-        when you're apart.</span
-      >
+      Sproutful helps families, carers, and professionals track daily routines, behaviors, medications, meals, and
+      milestones for people with disabilities. Stay organized, share updates in real time, and celebrate progress — all
+      in one platform.
     </Fragment>
-
-    <Fragment slot="bg">
-      <Image src={landingHero} alt="" class="absolute inset-0 w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-black/60"></div>
-    </Fragment>
+    <div slot="actions" class="flex justify-center gap-4">
+      <Button variant="primary" href="/family">For Families & Carers</Button>
+      <Button variant="secondary" href="/professional">For Professionals</Button>
+    </div>
   </Hero>
 
-  <!-- Note Widget ******************* -->
-
-  <!-- Features Widget *************** -->
-
-  <Features
+  <Features2
     id="features"
-    title="Simplifying Care for Everyone"
-    subtitle="From checklists to progress tracking, Sproutful keeps families, therapists, and support workers organized, and informed — all in one app built for real-life care."
+    title="Three ways Sproutful will transform your support network"
+    subtitle="Designed specifically for families, carers, and professionals supporting people with disabilities, Sproutful brings everyone together with powerful routines, real-time tracking, and actionable insights."
+    columns={3}
     items={[
       {
-        title: 'Shared Communication',
+        title: 'Stay Aligned as a Team',
         description:
-          'Instant updates keep families, therapists, and support teams aligned on care plans, progress, and daily tasks — so no one misses a thing.',
-        icon: 'tabler:message-circle',
+          '<b>Collaboration tools</b> help families, support workers, and professionals coordinate daily support for people with disabilities — everyone stays informed and on the same page.',
+        icon: 'tabler:affiliate-filled',
+        classes: { icon: 'text-blue-600' },
       },
       {
-        title: 'Professional Collaboration',
+        title: 'Track What Matters Daily',
         description:
-          'Therapists and support staff can monitor activities, track routines, and adjust goals remotely, creating smoother communication and better outcomes.',
-        icon: 'tabler:users',
+          '<b>Routines, behaviors, sleep, food, medications</b> — all managed in one place to simplify care and ensure the wellbeing of your loved one is always monitored.',
+        icon: 'tabler:calendar-event-filled',
+        classes: { icon: 'text-green-600' },
       },
       {
-        title: 'Family Peace of Mind',
+        title: 'See Progress Over Time',
         description:
-          'Families can check in on loved ones, see progress, and celebrate milestones — providing reassurance and visibility wherever they are.',
-        icon: 'tabler:heart',
-      },
-      {
-        title: 'Accountability Made Easy',
-        description:
-          'Daily checklists, reminders, and notes keep every team member accountable, organized, and focused on what matters most: quality care.',
-        icon: 'tabler:checklist',
-      },
-      {
-        title: 'Simple, Secure, and Reliable',
-        description:
-          'All care information is securely stored and accessible only to authorized users, ensuring privacy and trust in every interaction.',
-        icon: 'tabler:lock',
-      },
-      {
-        title: 'See progress over time',
-        description: 'Insights and visibility into growth and outcomes.',
-        icon: 'tabler:chart-line',
+          '<b>Insights reveal patterns</b>, improvements, and what works best, helping carers and families celebrate milestones and make data-driven support decisions.',
+        icon: 'tabler:graph-filled',
+        classes: { icon: 'text-amber-500' },
       },
     ]}
   />
 
-  <!-- Content Widget **************** -->
+  <Content
+    isFramed
+    chip={{
+      label: 'Mobile App',
+      bgClass: 'bg-general-blue',
+      textClass: 'text-white',
+    }}
+    frameIcon={{
+      name: 'tabler:device-mobile',
+      class: 'w-100 h-100 text-general-blue/20',
+    }}
+    frameBgClass="bg-bg-secondary"
+    image={{
+      src: TimelineImage,
+      alt: 'Mobile app showing behavior tracking, checklists, and medications',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
+    }}
+    callToAction={{ text: 'Learn more', href: '/mobile-app' }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
+        For Families and Carers
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        <b>Keep track of daily routines, behaviors, medications, and general wellbeing</b> on the go. Designed for families
+        and carers to stay organized, log progress, and share updates easily.
+      </p>
+    </Fragment>
+  </Content>
 
   <Content
+    isFramed
     isReversed
-    title="On-the-go care made simple"
-    subtitle="Built family-first, Sproutful's mobile app keeps families and support workers connected and accountable — all in one place."
-    callToAction={{ text: 'Learn More', href: '/mobile-app' }}
-    items={[
-      {
-        title: 'Ditch the Paper',
-        description:
-          'Replace messy logs and checklists with digital tracking. Everything is organized in one place, reducing errors and saving time.',
-      },
-
-      {
-        title: 'Accountability made easy',
-        description: 'Checklists, logs, and notes ensure support workers stay organized, transparent, and on track.',
-      },
-      {
-        title: 'Peace of mind anywhere',
-        description:
-          'Families can monitor loved ones, track progress, and celebrate milestones — all from a single digital platform.',
-      },
-    ]}
-    image={{
-      src: mobileAppImage,
-      alt: 'Mobile app mockup showing Sproutful checklist screen',
+    chip={{
+      label: 'Desktop Dashboard',
+      bgClass: 'bg-behaviour-purple',
+      textClass: 'text-white',
     }}
+    frameIcon={{
+      name: 'tabler:device-desktop',
+      class: 'w-100 h-100 text-medication-green/20',
+    }}
+    frameBgClass="bg-bg-secondary"
+    image={{
+      src: TimelineImage,
+      alt: 'Desktop dashboard showing insights, data, and care network',
+      style: 'object-fit: contain; height: auto; max-height: 500px; width: 100%;',
+    }}
+    callToAction={{ text: 'Learn more', href: '/saas' }}
   >
     <Fragment slot="content">
-      Empowering families and carers to stay informed, organized, and connected in real time.
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white dark:bg-page"></div>
+      <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight dark:text-white mb-5">
+        For Professionals
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300">
+        <b>Review insights, trends, and milestones</b> in one dashboard. Designed for professionals to analyze data, communicate
+        with families and carers, and stay in the loop without sifting through stacks of paper.
+      </p>
     </Fragment>
   </Content>
 
-  <Content
-    title="Centralized care management"
-    subtitle="Sproutful's web dashboard helps professionals monitor clients, coordinate support teams, and streamline care — all from one secure platform."
-    callToAction={{ text: 'Learn More', href: '/saas' }}
-    items={[
-      {
-        title: 'Professional oversight',
-        description:
-          'Easily view behavior trends, update care goals, and monitor support workers — giving professionals complete visibility over each case.',
-      },
-      {
-        title: 'Collaborative case management',
-        description:
-          'Share updates, notes, and progress reports instantly across your care network, keeping teams aligned and families informed.',
-      },
-      {
-        title: 'Customizable dashboards',
-        description:
-          'Tailor views by role or client, making it easy to focus on what matters most — while keeping data secure and organized.',
-      },
-    ]}
-    image={{
-      src: webAppImage,
-      alt: 'Web dashboard mockup showing client progress and care tracking',
-    }}
-  >
-    <Fragment slot="content">
-      Keep your team organized, informed, and in control — streamlining client care and collaboration.
-    </Fragment>
-  </Content>
   <Testimonials
     title="What our users say?"
     testimonials={[
       {
-        testimonial: `Sproutful has made managing my child's daily routines so much easier. I can see what tasks have been completed, and I always feel connected to the support team even when I'm at work.`,
-        name: 'Emily Carter',
+        testimonial:
+          "Sproutful makes it so simple to keep track of my child's daily routines, even when I'm on the go. I love how organized everything is!",
+        name: 'Olivia Bennett',
         job: 'Parent',
         image: {
-          src: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-          alt: 'Emily Carter Image',
+          src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+          alt: 'Olivia Bennett Image',
         },
       },
       {
-        testimonial: `As a support worker, Sproutful keeps me accountable and organized. I no longer worry about losing track of daily tasks, and the app makes communicating with families and therapists so simple.`,
-        name: 'James Mitchell',
-        job: 'Support Worker',
+        testimonial:
+          'The mobile app has been a game-changer for staying on top of medications and checklists. I can log updates instantly and everyone stays in the loop.',
+        name: 'Michael Tan',
+        job: 'Family Carer',
         image: {
-          src: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-          alt: 'James Mitchell Image',
+          src: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+          alt: 'Michael Tan Image',
         },
       },
       {
-        testimonial: `Sproutful has transformed the way I monitor client progress. The web dashboard gives me real-time updates and clear insights, making collaboration with support workers and families much more effective.`,
-        name: 'Dr. Sophia Reynolds',
+        testimonial:
+          'I appreciate being able to see patterns over time. The insights dashboard helps me understand progress and plan next steps effectively.',
+        name: 'Dr. Hannah Lee',
         job: 'Psychologist',
         image: {
-          src: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-          alt: 'Dr. Sophia Reynolds Image',
+          src: 'https://images.unsplash.com/photo-1502767089025-6572583495b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+          alt: 'Dr. Hannah Lee Image',
         },
       },
     ]}
   />
 
-  <!-- Steps Widget ****************** -->
-
-  <!-- <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
+  <Download
+    title="Start seeing progress today"
+    columns={2}
+    cards={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Mobile App for Families and Carers',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          'Get Sproutful on your iOS or Android device to track routines, behaviors, and medications — even without a professional involved.',
+        icon: 'tabler:device-mobile',
+        classes: { icon: 'text-general-blue' },
+        buttons: [
+          {
+            href: appStoreDownloadLink,
+            text: 'Download for iOS',
+            variant: 'secondary',
+            icon: 'tabler:brand-apple',
+          },
+          {
+            href: googlePlayDownloadLink,
+            text: 'Download for Android',
+            variant: 'secondary',
+            icon: 'tabler:brand-android',
+          },
+        ],
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
+        title: 'Desktop Dashboard for Professionals',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
+          'Access your routines, track progress, and see trends — works for families, carers, or solo users.',
+        icon: 'tabler:device-desktop',
+        classes: { icon: 'text-medication-green' },
+        buttons: [
+          {
+            href: 'https://github.com/arthelokyo/astrowind',
+            text: 'Try it in your browser',
+            variant: 'secondary',
+          },
+        ],
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
   />
-
-  <!-- Features2 Widget ************** -->
-
-  <!-- <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
-      {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-secondary"></div>
-    </Fragment>
-  </Features2>
-
-  <!-- HighlightedPosts Widget ******* -->
-
-  <!-- <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `} -->
-  <!-- />  -->
-
-  <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Learn how Sproutful helps families, support workers, and professionals stay connected, organized, and accountable."
-    classes={{ container: 'max-w-6xl' }}
-    items={[
-      {
-        title: 'What is Sproutful?',
-        description:
-          'Sproutful is a care coordination platform that connects families, clients, support workers, and professionals. It streamlines daily routines, tracks progress, and ensures everyone stays informed and accountable.',
-      },
-      {
-        title: 'Who is Sproutful for?',
-        description:
-          'Sproutful is designed for families, coordinators, and support workers using the mobile app, as well as therapists, and organizations using the web dashboard.',
-      },
-      {
-        title: 'Do I need any special devices or software?',
-        description:
-          'No special devices are needed. The mobile app works on iOS and Android devices, and the web dashboard works on any modern web browser.',
-      },
-      {
-        title: 'How does Sproutful help families stay connected?',
-        description:
-          'Families can view real-time updates on care routines, track progress, check off tasks, and receive notifications, giving them peace of mind even when they are away.',
-      },
-      {
-        title: 'How does Sproutful support professionals?',
-        description:
-          'Therapists, coordinators, and organizations can monitor client progress, assign tasks, track outcomes, and collaborate with support workers — all through a secure, centralized web dashboard.',
-      },
-      {
-        title: 'Is my data secure with Sproutful?',
-        description:
-          'Yes. Sproutful uses encryption, access controls, and industry best practices to keep all data secure and private. Only authorized users can access sensitive information.',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white dark:bg-page"></div>
-    </Fragment>
-  </FAQs>
-
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    id="download"
-    title="Download Sproutful today!"
-    subtitle="Stay connected with your Sprouts, track routines, and collaborate with your care team — all from one easy-to-use mobile app."
-  >
-    <div slot="actions" class="flex max-w-sm gap-4">
-      <Button variant="link" href={appStoreDownloadLink}>
-        <Image src={appStoreImg} alt="App Store Image" width={200} />
-      </Button>
-
-      <Button variant="link" href={googlePlayDownloadLink}>
-        <Image src={googlePlayImg} alt="Google Play Image" width={200} />
-      </Button>
-    </div>
-  </CallToAction>
 </Layout>

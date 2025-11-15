@@ -7,13 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--aw-color-primary)',
-        secondary: 'var(--aw-color-secondary)',
+        primary: 'rgb(var(--aw-color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--aw-color-secondary) / <alpha-value>)',
         accent: 'var(--aw-color-accent)',
         default: 'var(--aw-color-text-default)',
         muted: 'var(--aw-color-text-muted)',
         'bg-page': 'var(--aw-color-bg-page)',
         'bg-secondary': 'var(--aw-color-bg-secondary)',
+        'border': 'var(--aw-color-border)',
         'behaviour-purple': 'rgb(190 147 227)',
         'general-blue': '#5DAEED',
         'medication-green': '#8DC899',
