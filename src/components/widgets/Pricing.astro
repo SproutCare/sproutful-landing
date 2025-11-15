@@ -30,14 +30,14 @@ const hasYearly = prices.some((p) => p.priceYearly && p.periodYearly);
         <div class="relative mx-auto flex items-center space-x-2 rounded-full border border-border p-1.5">
           <button
             type="button"
-            class="rounded-full px-10 py-2 text-[16px] font-medium leading-tight transition-colors duration-200 ease-out bg-primary text-white"
+            class="rounded-full px-10 py-2 text-[16px] font-medium leading-tight bg-primary text-white"
             data-pricing-button="monthly"
           >
             Monthly
           </button>
           <button
             type="button"
-            class="rounded-full px-10 py-2 text-[16px] font-medium leading-tight transition-colors duration-200 ease-out text-black hover:bg-primary/10"
+            class="rounded-full px-10 py-2 text-[16px] font-medium leading-tight text-black hover:bg-primary/10"
             data-pricing-button="yearly"
           >
             Annual
@@ -149,29 +149,6 @@ const hasYearly = prices.some((p) => p.priceYearly && p.periodYearly);
 </WidgetWrapper>
 
 <style>
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  .fade-out {
-    animation: fadeOut 0.3s ease-in-out forwards;
-  }
-  .fade-in {
-    animation: fadeIn 0.3s ease-in-out forwards;
-  }
-
   [data-pricing-button].active {
     @apply bg-primary text-white;
   }
@@ -187,81 +164,38 @@ const hasYearly = prices.some((p) => p.priceYearly && p.periodYearly);
     const periodElements = document.querySelectorAll('[data-pricing-period-text]');
 
     let isYearly = false;
-    let isAnimating = false;
 
-    function updatePricing(animate = true) {
-      if (isAnimating) return;
-
-      if (!animate) {
-        priceElements.forEach((el) => {
-          el.textContent = isYearly
-            ? el.getAttribute('data-yearly-price') || el.getAttribute('data-monthly-price')
-            : el.getAttribute('data-monthly-price');
-        });
-        periodElements.forEach((el) => {
-          el.textContent = isYearly
-            ? el.getAttribute('data-yearly-period') || el.getAttribute('data-monthly-period')
-            : el.getAttribute('data-monthly-period');
-        });
-        buttons.forEach((btn) => {
-          const isActive = btn.dataset.pricingButton === (isYearly ? 'yearly' : 'monthly');
-          if (isActive) {
-            btn.classList.add('active', 'bg-primary', 'text-white');
-            btn.classList.remove('text-black', 'hover:bg-primary/10');
-          } else {
-            btn.classList.remove('active', 'bg-primary', 'text-white');
-            btn.classList.add('text-black', 'hover:bg-primary/10');
-          }
-        });
-        return;
-      }
-
-      isAnimating = true;
-
+    function updatePricing() {
+      priceElements.forEach((el) => {
+        el.textContent = isYearly
+          ? el.getAttribute('data-yearly-price') || el.getAttribute('data-monthly-price')
+          : el.getAttribute('data-monthly-price');
+      });
       periodElements.forEach((el) => {
         el.textContent = isYearly
           ? el.getAttribute('data-yearly-period') || el.getAttribute('data-monthly-period')
           : el.getAttribute('data-monthly-period');
       });
-
-      priceElements.forEach((el) => el.classList.add('fade-out'));
-
-      setTimeout(() => {
-        priceElements.forEach((el) => {
-          el.textContent = isYearly
-            ? el.getAttribute('data-yearly-price') || el.getAttribute('data-monthly-price')
-            : el.getAttribute('data-monthly-price');
-          el.classList.remove('fade-out');
-          el.classList.add('fade-in');
-        });
-
-        buttons.forEach((btn) => {
-          const isActive = btn.dataset.pricingButton === (isYearly ? 'yearly' : 'monthly');
-          if (isActive) {
-            btn.classList.add('active', 'bg-primary', 'text-white');
-            btn.classList.remove('text-black', 'hover:bg-primary/10');
-          } else {
-            btn.classList.remove('active', 'bg-primary', 'text-white');
-            btn.classList.add('text-black', 'hover:bg-primary/10');
-          }
-        });
-
-        setTimeout(() => {
-          priceElements.forEach((el) => el.classList.remove('fade-in'));
-          isAnimating = false;
-        }, 300);
-      }, 300);
+      buttons.forEach((btn) => {
+        const isActive = btn.dataset.pricingButton === (isYearly ? 'yearly' : 'monthly');
+        if (isActive) {
+          btn.classList.add('active', 'bg-primary', 'text-white');
+          btn.classList.remove('text-black', 'hover:bg-primary/10');
+        } else {
+          btn.classList.remove('active', 'bg-primary', 'text-white');
+          btn.classList.add('text-black', 'hover:bg-primary/10');
+        }
+      });
     }
 
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        if (isAnimating) return;
         isYearly = btn.dataset.pricingButton === 'yearly';
-        updatePricing(true);
+        updatePricing();
       });
     });
 
-    updatePricing(false);
+    updatePricing();
   }
 
   if (document.readyState === 'loading') {
