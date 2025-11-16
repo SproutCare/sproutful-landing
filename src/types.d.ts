@@ -228,6 +228,7 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
 
 export interface Team extends Omit<Headline, 'classes'>, Widget {
   team?: Array<TeamMember>;
+  columns?: number;
 }
 
 export interface Stats extends Omit<Headline, 'classes'>, Widget {

@@ -15,9 +15,10 @@ export const headerData = {
       href: getPermalink('/pricing'),
     },
     {
-      text: 'Contact Us',
-      href: getPermalink('/contact'),
+      text: 'About Us',
+      href: getPermalink('/about'),
     },
+    
   ],
   actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
 };
@@ -27,37 +28,15 @@ export const footerData = {
     {
       title: 'Product',
       links: [
-        { text: 'Features', href: '/#features' },
-        { text: 'Plans & Pricing', href: '/#pricing' },
-        { text: 'Download the App', href: '/#download' },
-        { text: 'Security', href: '/#security' },
-        { text: 'FAQ', href: '/#faq' },
-      ],
-    },
-    {
-      title: 'For Families',
-      links: [
-        { text: 'How it Works', href: '/#how-it-works' },
-        { text: 'Add Your Sprouts', href: '/#steps' },
-        { text: 'Invite Carers & Professionals', href: '/#collaboration' },
-        { text: 'Stories from Families', href: '/#stories' },
-      ],
-    },
-    {
-      title: 'For Professionals',
-      links: [
-        { text: 'For Organizations', href: '/#organizations' },
-        { text: 'For Carers', href: '/#carers' },
-        { text: 'For Coordinators', href: '/#coordinators' },
-        { text: 'Partner with Sproutful', href: '/#partners' },
+        { text: 'Plans & Pricing', href: '/pricing' },
+        { text: 'Download the App', href: '/mobile-app' },
+        { text: 'FAQ', href: '/faq' },
       ],
     },
     {
       title: 'Company',
       links: [
         { text: 'About Us', href: '/about' },
-        { text: 'Blog', href: '/blog' },
-        { text: 'Careers', href: '/careers' },
         { text: 'Contact', href: '/contact' },
       ],
     },

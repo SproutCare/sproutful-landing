@@ -54,17 +54,25 @@ const {
     }
   </div>
 
-  <ItemGrid
-    items={items}
-    columns={columns}
-    defaultIcon={defaultIcon}
-    classes={{
-      container: 'mt-12',
-      panel: 'max-w-full sm:max-w-md',
-      title: 'text-lg font-semibold',
-      description: 'mt-0.5',
-      icon: 'flex-shrink-0 mt-1 text-primary w-6 h-6',
-      ...((classes?.items as object) ?? {}),
-    }}
-  />
+  {
+    (await Astro.slots.has('items')) ? (
+      <div class="mt-12">
+        <Fragment slot="items" />
+      </div>
+    ) : (
+      <ItemGrid
+        items={items}
+        columns={columns}
+        defaultIcon={defaultIcon}
+        classes={{
+          container: 'mt-12',
+          panel: 'max-w-full sm:max-w-md',
+          title: 'text-lg font-semibold',
+          description: 'mt-0.5',
+          icon: 'flex-shrink-0 mt-1 text-primary w-6 h-6',
+          ...((classes?.items as object) ?? {}),
+        }}
+      />
+    )
+  }
 </WidgetWrapper>

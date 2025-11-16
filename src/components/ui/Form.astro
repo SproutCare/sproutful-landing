@@ -2,10 +2,10 @@
 import type { Form as Props } from '~/types';
 import Button from '~/components/ui/Button.astro';
 
-const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
+const { inputs, textarea, disclaimer, button = 'Contact us', description = '', action = '/api/contact', method = 'POST' } = Astro.props;
 ---
 
-<form>
+<form id="contact-form" method={method} action={action}>
   {
     inputs &&
       inputs.map(
@@ -84,4 +84,59 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
       </div>
     )
   }
+
+  <div id="form-message" class="mt-4 text-center hidden"></div>
 </form>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const messageDiv = document.getElementById('form-message');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton?.textContent;
+      
+      // Disable button and show loading state
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          messageDiv.className = 'mt-4 text-center text-green-600 dark:text-green-400';
+          messageDiv.textContent = result.message || 'Thank you! Your message has been sent. We\'ll get back to you soon.';
+          messageDiv.classList.remove('hidden');
+          form.reset();
+        } else {
+          throw new Error(result.error || 'Something went wrong');
+        }
+      } catch (error) {
+        messageDiv.className = 'mt-4 text-center text-red-600 dark:text-red-400';
+        messageDiv.textContent = error.message || 'Sorry, there was an error sending your message. Please try again or email us directly.';
+        messageDiv.classList.remove('hidden');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText || 'Contact us';
+        }
+      }
+    });
+  }
+</script>

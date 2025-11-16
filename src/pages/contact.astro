@@ -12,12 +12,12 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText title="Let's Connect!" />
 
   <ContactUs
     id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="Drop us a message today"
+    subtitle="For quicker answers, explore our <link href='/faq'>FAQs</link> section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
     inputs={[
       {
         type: 'text',
@@ -47,31 +47,28 @@ const metadata = {
     items={[
       {
         title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
+        description:
+          'Reach out for help with your account, logging in, navigating the dashboard, managing subscriptions, or any general questions about using Sproutful.',
       },
       {
-        title: 'Contact sales',
+        title: 'Account & billing',
         description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
+          'Get help with subscription management, billing questions, plan changes, or issues accessing your Sproutful account.',
       },
       {
         title: 'Technical support',
         description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
+          "Contact us if you're experiencing issues with the mobile app, web dashboard, syncing data, or any technical problems while using Sproutful.",
       },
-      {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
-        icon: 'tabler:headset',
-      },
+
       {
         title: 'Email',
-        description: 'contact@support.com',
+        description: 'support@sproutful.app',
         icon: 'tabler:mail',
       },
       {
         title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
+        description: 'Perth, Australia',
         icon: 'tabler:map-pin',
       },
     ]}
