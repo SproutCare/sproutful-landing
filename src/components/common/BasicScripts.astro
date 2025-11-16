@@ -173,6 +173,9 @@ import { UI } from 'astrowind:config';
     elements: null,
 
     start() {
+      // Reset animation counter
+      this.animationCounter = 0;
+      
       const selectors = [
         '[class*=" intersect:"]',
         '[class*=":intersect:"]',
@@ -245,8 +248,60 @@ import { UI } from 'astrowind:config';
 
       this.observer = new IntersectionObserver(callback.bind(this), { threshold: [0, 0.25, 0.5, 0.99] });
 
+      // Check initial visibility immediately after DOM is ready
+      const checkInitialVisibility = () => {
+        this.elements.forEach((el) => {
+          if (el.hasAttribute('data-animated')) return;
+          
+          const rect = el.getBoundingClientRect();
+          const threshold = el._intersectionThreshold;
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+          
+          // Calculate how much of the element is visible
+          const elementHeight = rect.height;
+          const elementTop = rect.top;
+          const elementBottom = rect.bottom;
+          
+          // Calculate visible portion
+          const visibleTop = Math.max(0, -elementTop);
+          const visibleBottom = Math.min(elementHeight, viewportHeight - elementTop);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const intersectionRatio = elementHeight > 0 ? visibleHeight / elementHeight : 0;
+          
+          // Check if element is horizontally in viewport and meets threshold
+          const isHorizontallyVisible = rect.left < viewportWidth && rect.right > 0;
+          const meetsThreshold = intersectionRatio >= threshold;
+          
+          if (isHorizontallyVisible && meetsThreshold) {
+            if (el.classList.contains('intersect-no-queue')) {
+              el.removeAttribute('no-intersect');
+              if (el.classList.contains('intersect-once')) {
+                this.observer.unobserve(el);
+              }
+            } else {
+              el.removeAttribute('no-intersect');
+              el.setAttribute('data-animated', 'true');
+              const delay = this.animationCounter * this.delayBetweenAnimations;
+              this.animationCounter++;
+              el.style.transitionDelay = `${delay}ms`;
+              el.style.animationDelay = `${delay}ms`;
+              if (el.classList.contains('intersect-once')) {
+                this.observer.unobserve(el);
+              }
+            }
+          }
+        });
+      };
+
       this.elements.forEach((el) => {
         this.observer.observe(el);
+      });
+      
+      // Check immediately and after a short delay to catch any layout shifts
+      checkInitialVisibility();
+      requestAnimationFrame(() => {
+        checkInitialVisibility();
       });
     },
 
